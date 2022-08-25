@@ -2,8 +2,12 @@ import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-const Header = React.lazy(() => import("./components/Header"));
+import { ThemeProvider } from "next-themes";
+const Header = React.lazy(() => import("./components/Header/Header"));
 const RenderRouter = React.lazy(() => import("./components/RenderRouter"));
+const Loading = React.lazy(() => import("./components/Loading"));
+
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,12 +15,14 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Suspense fallback={"Loading ..."}>
-      <Header />
-      {/*  */}
-      <RenderRouter />
-      {/*  */}
-    </Suspense>
+    <ThemeProvider attribute="class" defaultTheme="light">
+      <Suspense fallback={<Loading />}>
+        <Header />
+        {/*  */}
+        <RenderRouter />
+        {/*  */}
+      </Suspense>
+    </ThemeProvider>
   </React.StrictMode>
 );
 
