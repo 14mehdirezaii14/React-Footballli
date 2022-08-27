@@ -1,10 +1,28 @@
 import { useEffect } from "react";
-let moment = require("moment-jalaali");
-const DateList = (): JSX.Element => {
+import { useAppDispatch, useAppSelector } from "../../Redux/hookRedux";
+
+const DateList = () => {
+  const selector = useAppSelector((state: any) => state);
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
-    console.log(moment().format("jYYYY/jM/jD"));
+    dispatch({ type: "SET_DATES" });
   }, []);
-  return <>DateList</>;
+  return (
+    <div className="flex overflow-x-scroll scroll-smooth">
+      <ul className="flex ">
+        {selector.dateReducer === "loading"
+          ? "loadin"
+          : selector.dateReducer.map((item: any, index: any) => {
+              return (
+                <li className="w-24 " key={index}>
+                  <button className="btn">{item}</button>
+                </li>
+              );
+            })}
+      </ul>
+    </div>
+  );
 };
 
 export default DateList;
