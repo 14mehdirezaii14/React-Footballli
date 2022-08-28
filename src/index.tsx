@@ -7,7 +7,6 @@ import store from "./Redux/store";
 import { Provider } from "react-redux";
 const Header = React.lazy(() => import("./components/Header/Header"));
 const RenderRouter = React.lazy(() => import("./components/RenderRouter"));
-const Loading = React.lazy(() => import("./components/Loading"));
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,14 +15,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider attribute="class" defaultTheme="light">
-      <Suspense fallback={<Loading />}>
-        <Provider store={store}>
-          <Header />
-          {/*  */}
-          <RenderRouter />
-          {/*  */}
-        </Provider>
-      </Suspense>
+      <Provider store={store}>
+        <Header />
+        {/*  */}
+        <RenderRouter />
+        {/*  */}
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>
 );
