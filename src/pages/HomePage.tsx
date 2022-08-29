@@ -13,8 +13,10 @@ const HomePage = () => {
   useEffect(() => {
     let today: string = getToday();
     dispatch({ type: "WATCH_GET_LIST_GAMES", peyload: today });
+    window.addEventListener('offline', () => {
+      console.log('offline')
+    });
   }, []);
-
   return (
     <div className="container w-full mx-auto">
       {selector.listGamesReducer === "errVpn" ? (

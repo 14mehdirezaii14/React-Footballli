@@ -3,10 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { ThemeProvider } from "next-themes";
-import store from "./Redux/store";
-import { Provider } from "react-redux";
-const Header = React.lazy(() => import("./components/Header/Header"));
-const RenderRouter = React.lazy(() => import("./components/RenderRouter"));
+const App = React.lazy(() => import("./App"));
 const ErrorBoundary = React.lazy(
   () => import("./components/HandleError/ErrorBoundary")
 );
@@ -17,14 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <ThemeProvider attribute="class" defaultTheme="light">
-        <Provider store={store}>
-          <Header />
-          {/*  */}
-          <RenderRouter />
-          {/*  */}
-        </Provider>
-      </ThemeProvider>
+        <ThemeProvider attribute="class">
+          <App />
+        </ThemeProvider>
     </ErrorBoundary>
   </React.StrictMode>
 );
