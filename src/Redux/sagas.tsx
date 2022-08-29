@@ -1,7 +1,7 @@
 import { all, put, takeLatest } from "redux-saga/effects";
 import { Axios } from "../components/api/axiosConfig";
 import { getToday } from "../components/getToday";
-import { ListDatesType, ListLeagues } from "../types/index";
+import { ListDatesType, ListLeagues, CardLeaguesType } from "../types/index";
 let moment = require("moment-jalaali");
 
 function* sagaSetDates() {
@@ -57,9 +57,16 @@ function* getListGames(action: any) {
     })
     .catch((err) => {
       console.log(err.message);
+      if (err.message === "Network Error") {
+        data = "errVpn";
+      }
     });
-  yield arrangeTheLeaguesList(data);
-  yield put({ type: "GET_LIST_GAMES", peyload: listLeagues });
+  if (data === "errVpn") {
+    yield put({ type: "GET_LIST_GAMES", peyload: data });
+  } else {
+    yield arrangeTheLeaguesList(data);
+    yield put({ type: "GET_LIST_GAMES", peyload: listLeagues as ListLeagues });
+  }
 }
 
 function* watchGetListGames() {

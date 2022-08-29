@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../Redux/hookRedux";
 import { getToday } from "../components/getToday";
 import { CardLeaguesType } from "../types";
 const CardLeagues = React.lazy(() => import("../components/Games/CardLeague"));
+const ErrVpn = React.lazy(() => import("../components/HandleError/ErrVpn"));
 
 const HomePage = () => {
   const selector = useAppSelector((state: any) => state);
@@ -16,11 +17,16 @@ const HomePage = () => {
 
   return (
     <div className="container w-full mx-auto">
-      {selector.listGamesReducer === "loading" ? (
+      {selector.listGamesReducer === "errVpn" ? (
+        <ErrVpn />
+      ) : selector.listGamesReducer === "loading" ? (
         <Loading />
       ) : (
         Object.entries(selector.listGamesReducer).map(
-          (item: any, index: number): JSX.Element => {
+          (
+            item: (string | CardLeaguesType | any)[],
+            index: number
+          ): JSX.Element => {
             return <CardLeagues leagueMatches={item[1]} key={index} />;
           }
         )
