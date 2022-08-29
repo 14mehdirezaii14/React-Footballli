@@ -1,9 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { dateReducer } from "./Reducer/dateReducer";
-import createSagaMiddleware from "redux-saga";
+import createSagaMiddleware,{SagaMiddleware} from "redux-saga";
 import { rootSaga } from "./sagas";
 import { listGamesReducer } from "./Reducer/listGamesReducer";
-const sagaMiddleware = createSagaMiddleware();
+
+const sagaMiddleware:SagaMiddleware<{}> = createSagaMiddleware();
 
 const store = createStore(
   combineReducers({ dateReducer, listGamesReducer }),

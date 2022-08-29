@@ -1,38 +1,54 @@
-import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../Redux/hookRedux";
-
-const DateList = () => {
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import Loading from "../Loading";
+import { getToday } from "../getToday";
+const DateList = (): JSX.Element => {
+  const [activeTab, setActiveTab] = useState<string | boolean>(false);
   const selector = useAppSelector((state: any) => state);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch({ type: "SET_DATES" });
+    setTimeout(() => {
+      setActiveTab(getToday());
+    }, 500);
   }, []);
-  const changeTimeRange = (date: string) => {
+
+  const handleChange = (event: any, date: string) => {
+    console.log(event);
+    dispatch({ type: "LOADING" });
     dispatch({ type: "WATCH_GET_LIST_GAMES", peyload: date });
+    setActiveTab(date);
   };
   return (
-    <div className="flex overflow-x-scroll scroll-smooth">
-      <ul className="flex ">
-        {selector.dateReducer === "loading"
-          ? "loadin"
-          : selector.dateReducer.map((item: any, index: any) => {
+    <div className="flex no-scrollbar overflow-x-scroll scroll-smooth">
+      <Box>
+        <Tabs
+          value={activeTab}
+          onChange={handleChange}
+          textColor="inherit"
+          indicatorColor="primary"
+          aria-label="secondary tabs example"
+        >
+          {selector.dateReducer === "loading" ? (
+            <Loading />
+          ) : (
+            selector.dateReducer.map((item: any, index: any) => {
               return (
-                <li className="w-24" key={index}>
-                  <button
-                    className={
-                      item.active
-                        ? `border-b-2 pb-1 border-b-green-400 btn px-2`
-                        : `btn`
-                    }
-                    onClick={() => changeTimeRange(item.date)}
-                  >
-                    {item.nameDay}
-                  </button>
-                </li>
+                <Tab
+                  key={index}
+                  className="dark:text-white text-gray-900"
+                  value={item.date}
+                  label={item.nameDay}
+                />
               );
-            })}
-      </ul>
+            })
+          )}
+        </Tabs>
+      </Box>
     </div>
   );
 };

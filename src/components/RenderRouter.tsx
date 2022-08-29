@@ -4,7 +4,7 @@ import React, { Suspense } from "react";
 const Loading = React.lazy(() => import("./Loading"));
 const Home = React.lazy(() => import("../pages/HomePage"));
 
-const RenderRouter = () => {
+const RenderRouter = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Routes>

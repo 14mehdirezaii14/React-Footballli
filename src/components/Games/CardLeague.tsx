@@ -4,8 +4,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
-
-const CardLeagues = ({ leagueMatches }: any) => {
+import { CardLeaguesType, MatchesType } from "../../types";
+let moment = require("moment-jalaali");
+const CardLeagues = ({ leagueMatches }: { leagueMatches: CardLeaguesType }) => {
   const [open, setOpen] = useState(true);
   return (
     <Card className="dark:bg-gray-900 dark:text-white mx-2 my-5">
@@ -23,15 +24,23 @@ const CardLeagues = ({ leagueMatches }: any) => {
       </CardContent>
       <Collapse in={open}>
         <CardContent className="border-t  dark:border-t-gray-600">
-          {leagueMatches.matches.map((item: any, index: number) => {
+          {leagueMatches.matches.map((item: MatchesType, index: number) => {
             return (
               <div key={index}>
                 <div className="flex align-middle justify-around mb-3 pb-3 border-b  dark:border-b-gray-600">
-                  <img className="w-8 pl-3 text-center" src={item.away.logo} alt="" />
+                  <img
+                    className="w-8 pl-3 text-center"
+                    src={item.away.logo}
+                    alt=""
+                  />
                   <p className="text-xs text-center">{item.away.name}</p>
-                  <p className="px-2 text-sm text-center">12:30</p>
+                  <p className="px-2 text-sm text-center">{moment(item.timeGame).format("hh:mm")}</p>
                   <p className="text-xs text-center">{item.home.name}</p>
-                  <img className="w-8 pr-3 text-center" src={item.home.logo} alt="" />
+                  <img
+                    className="w-8 pr-3 text-center"
+                    src={item.home.logo}
+                    alt=""
+                  />
                 </div>
               </div>
             );
