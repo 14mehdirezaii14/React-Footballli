@@ -2,7 +2,7 @@
 
 ## Introduction
 
-We are going to develop a react based web application to get live scores of football games. It will be a simple panel (**only mobile design is needed**) with an **infinite tab** scrolling side to side. Each page indicates a specific day with list of games played on that day. The list of games will be categorized based on their league. You could get a grasp of features in the image below. Ofcourse this is not a 0 or 1 task, so you can push code based on how much progress you have made, but try to implement features as similar as you can (it has points in final review).
+We are going to develop a react based web application to get live scores of football games. It will be a simple panel (**only mobile design is needed**) with an **infinite tab** scrolling side to side. Each page indicates a specific day with list of games played on that day. The list of games will be categorized based on their league. You could get a grasp of features in the image below. Ofcourse this is not a 0 or 1 task, so you can push code based on how much progress you have made, but try to implement features as similar as you can (it has points in final review). 
 
 ![Screenshot from 2022-06-25 17-02-51](https://user-images.githubusercontent.com/61571233/175773756-b6e136dc-4ca7-4ee2-b88e-248d4591a638.png "UI for live score page")
 <p align="center">
