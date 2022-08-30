@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import Header from "../components/Header/Header";
 import Theme from "../components/Header/Theme";
+import SearchBoxHeader from "../components/Header/SearchBoxHeader";
 import { ThemeProvider } from "next-themes";
 import { Provider } from "react-redux";
 import store from "../Redux/store";
@@ -34,4 +35,9 @@ export const ThemeStories = () => (
     <Theme />
   </ThemeProvider>
 );
+
+export const SearchBoxStories = () =>  (
+    <SearchBoxHeader/>
+  )
+
 

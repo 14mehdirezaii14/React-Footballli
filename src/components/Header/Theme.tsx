@@ -16,7 +16,7 @@ const Theme = (): JSX.Element => {
  
   return (
     <button title="Theme" onClick={changeTheme} className="btn">
-      <img src={theme === "darke" ? SunIcon : MoonIcon} width="25" alt="" />
+      <img src={theme === "dark" ? SunIcon : MoonIcon} width="25" alt="" />
     </button>
   );
 };
