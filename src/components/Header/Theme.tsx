@@ -21,7 +21,7 @@ const Theme = (): JSX.Element => {
   };
 
   return (
-    <button onClick={changeTheme} className="btn">
+    <button title="Theme" onClick={changeTheme} className="btn">
       <img src={imgTheme} width="25" alt="" />
     </button>
   );

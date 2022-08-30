@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from "../Redux/hookRedux";
 import { getToday } from "../components/getToday";
 import { CardLeaguesType } from "../types";
 const CardLeagues = React.lazy(() => import("../components/Games/CardLeague"));
-const ErrVpn = React.lazy(() => import("../components/HandleError/ErrVpn"));
 
 const HomePage = () => {
   const selector = useAppSelector((state: any) => state);
@@ -13,15 +12,10 @@ const HomePage = () => {
   useEffect(() => {
     let today: string = getToday();
     dispatch({ type: "WATCH_GET_LIST_GAMES", peyload: today });
-    window.addEventListener('offline', () => {
-      console.log('offline')
-    });
   }, []);
   return (
     <div className="container w-full mx-auto">
-      {selector.listGamesReducer === "errVpn" ? (
-        <ErrVpn />
-      ) : selector.listGamesReducer === "loading" ? (
+      { selector.listGamesReducer === "loading" ? (
         <Loading />
       ) : (
         Object.entries(selector.listGamesReducer).map(

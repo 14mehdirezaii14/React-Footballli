@@ -18,7 +18,6 @@ const DateList = (): JSX.Element => {
   }, []);
 
   const handleChange = (event: any, date: string) => {
-    console.log(event);
     dispatch({ type: "LOADING" });
     dispatch({ type: "WATCH_GET_LIST_GAMES", peyload: date });
     setActiveTab(date);

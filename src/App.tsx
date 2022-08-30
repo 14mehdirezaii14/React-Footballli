@@ -1,17 +1,22 @@
-import React from "react";
+import React, { Suspense } from "react";
 import store from "./Redux/store";
 import { Provider } from "react-redux";
-import ErrOffline from "./components/HandleError/ErrOffline";
+import Loading from "./components/Loading";
 const Header = React.lazy(() => import("./components/Header/Header"));
 const RenderRouter = React.lazy(() => import("./components/RenderRouter"));
+const HandleError = React.lazy(
+  () => import("./components/HandleError/HandleError")
+);
 
 const App = (): JSX.Element => {
   return (
     <Provider store={store}>
       <Header />
-      <ErrOffline>
-        <RenderRouter />
-      </ErrOffline>
+      <Suspense fallback={<Loading />}>
+        <HandleError>
+          <RenderRouter />
+        </HandleError>
+      </Suspense>
     </Provider>
   );
 };
