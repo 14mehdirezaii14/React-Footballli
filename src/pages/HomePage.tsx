@@ -18,10 +18,10 @@ const HomePage = () => {
       { selector.listGamesReducer === "loading" ? (
         <Loading />
       ) : (
-        Object.entries(selector.listGamesReducer).map(
+        Object.entries<CardLeaguesType>(selector.listGamesReducer).map(
           (
-            item: (string | CardLeaguesType | any)[],
-            index: number
+            item,
+            index
           ): JSX.Element => {
             return <CardLeagues leagueMatches={item[1]} key={index} />;
           }

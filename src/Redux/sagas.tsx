@@ -1,7 +1,7 @@
 import { all, put, takeLatest } from "redux-saga/effects";
 import { Axios } from "../components/api/axiosConfig";
 import { getToday } from "../components/getToday";
-import { ListDatesType, ListLeagues, CardLeaguesType } from "../types/index";
+import { ListDatesType, ListLeagues, TypeAction } from "../types/index";
 let moment = require("moment-jalaali");
 
 function* sagaSetDates() {
@@ -49,7 +49,7 @@ function* arrangeTheLeaguesList(list: any) {
 
 //
 
-function* getListGames(action: any) {
+function* getListGames(action: TypeAction) {
   let data: any = [];
   yield Axios.get("/fixtures", { params: { date: action.peyload } })
     .then((res) => {

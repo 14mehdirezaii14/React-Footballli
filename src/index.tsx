@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { ThemeProvider } from "next-themes";
+import Loading from "./components/Loading";
 const App = React.lazy(() => import("./App"));
 const ErrorBoundary = React.lazy(
   () => import("./components/HandleError/ErrorBoundary")
@@ -13,11 +14,13 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ErrorBoundary>
+    <Suspense fallback={<Loading />}>
+      <ErrorBoundary>
         <ThemeProvider attribute="class" defaultTheme="light">
           <App />
         </ThemeProvider>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </Suspense>
   </React.StrictMode>
 );
 
