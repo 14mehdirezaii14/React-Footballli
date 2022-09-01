@@ -22,7 +22,7 @@ const HomePage = () => {
           (
             item,
             index
-          ): JSX.Element => {
+          ) => {
             return <CardLeagues leagueMatches={item[1]} key={index} />;
           }
         )

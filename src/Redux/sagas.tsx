@@ -13,7 +13,8 @@ function* sagaSetDates() {
     { nameDay: "فردا", date: tomorrow },
   ];
 
-  for (let n = 2; n <= 5; n++) {
+// Time header settings
+  for (let n = 2; n <= 100; n++) {
     yield moment.loadPersian();
     const nameDay: string = moment().add(n, "days").format("jD jMMMM ");
     const date: string = moment().add(n, "days").format("YYYY-MM-DD");
