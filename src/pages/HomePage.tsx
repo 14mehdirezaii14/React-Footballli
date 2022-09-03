@@ -15,14 +15,11 @@ const HomePage = () => {
   }, []);
   return (
     <div className="container w-full mx-auto">
-      { selector.listGamesReducer === "loading" ? (
+      {selector.listGamesReducer === "loading" ? (
         <Loading />
       ) : (
         Object.entries<CardLeaguesType>(selector.listGamesReducer).map(
-          (
-            item,
-            index
-          ) => {
+          (item, index) => {
             return <CardLeagues leagueMatches={item[1]} key={index} />;
           }
         )

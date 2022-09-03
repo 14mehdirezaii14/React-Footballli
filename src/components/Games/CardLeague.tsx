@@ -8,8 +8,9 @@ import { CardLeaguesType, MatchesType } from "../../types";
 let moment = require("moment-jalaali");
 const CardLeagues = ({ leagueMatches }: { leagueMatches: CardLeaguesType }) => {
   const [open, setOpen] = useState(true);
+  console.log(leagueMatches)
   return (
-    <Card className="dark:bg-gray-900 dark:text-white mx-2 my-5">
+    <Card className="dark:bg-gray-900 dark:text-white  my-5 mx-auto">
       <CardContent>
         <button
           className="flex w-full align-middle   justify-between"

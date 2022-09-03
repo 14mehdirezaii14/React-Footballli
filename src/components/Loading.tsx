@@ -1,6 +1,6 @@
 const Loading = (): JSX.Element => {
   return (
-   <div className="flex items-center justify-center absolute w-full ">
+   <div className="flex items-center justify-center absolute right-2/4 ">
      <div role="status" className="">
       <svg
         aria-hidden="true"

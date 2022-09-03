@@ -13,7 +13,7 @@ function* sagaSetDates() {
     { nameDay: "فردا", date: tomorrow },
   ];
 
-// Time header settings
+  // Time header settings
   for (let n = 2; n <= 100; n++) {
     yield moment.loadPersian();
     const nameDay: string = moment().add(n, "days").format("jD jMMMM ");
@@ -32,6 +32,7 @@ function* watchSagaSetDates() {
 
 let listLeagues: ListLeagues = {};
 function* arrangeTheLeaguesList(list: any) {
+  listLeagues = {};
   yield list.map((item: any) => {
     if (listLeagues[item.league.name]) {
       listLeagues[item.league.name].matches.push({
@@ -50,8 +51,9 @@ function* arrangeTheLeaguesList(list: any) {
 
 //
 
+let data: any = [];
 function* getListGames(action: TypeAction) {
-  let data: any = [];
+  data = [];
   yield Axios.get("/fixtures", { params: { date: action.peyload } })
     .then((res) => {
       data = res.data.response;
