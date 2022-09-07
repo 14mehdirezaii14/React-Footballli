@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Loading from "../components/Loading";
 import { useAppDispatch, useAppSelector } from "../Redux/hookRedux";
 import { getToday } from "../components/getToday";
 import { CardLeaguesType } from "../types";
-const CardLeagues = React.lazy(() => import("../components/Games/CardLeague"));
+import lazyWithPreload from "../components/lazyWithPreload";
+const CardLeagues = lazyWithPreload(() => import("../components/Games/CardLeague"));
 
 const HomePage = () => {
   const selector = useAppSelector((state: any) => state);

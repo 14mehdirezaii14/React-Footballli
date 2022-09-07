@@ -4,8 +4,10 @@ import "./styles/index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { ThemeProvider } from "next-themes";
 import Loading from "./components/Loading";
-const App = React.lazy(() => import("./App"));
-const ErrorBoundary = React.lazy(
+import lazyWithPreload from "./components/lazyWithPreload";
+
+const App = lazyWithPreload(() => import("./App"));
+const ErrorBoundary = lazyWithPreload(
   () => import("./components/HandleError/ErrorBoundary")
 );
 const root = ReactDOM.createRoot(

@@ -1,8 +1,7 @@
-import React from "react";
-
-const SearchBoxHeader = React.lazy(() => import("./SearchBoxHeader"));
-const DateList = React.lazy(() => import("./DateList"));
-const Theme = React.lazy(() => import("./Theme"));
+import lazyWithPreload from "../lazyWithPreload";
+const SearchBoxHeader = lazyWithPreload(() => import("./SearchBoxHeader"));
+const DateList = lazyWithPreload(() => import("./DateList"));
+const Theme = lazyWithPreload(() => import("./Theme"));
 
 const Header = (): JSX.Element => {
   return (

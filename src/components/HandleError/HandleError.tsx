@@ -1,11 +1,10 @@
-import React, { useEffect, useState, ReactChildren, ReactChild } from "react";
+import { useEffect, useState, ReactChildren, ReactChild } from "react";
 import { useAppSelector } from "../../Redux/hookRedux";
-import {
-  AuxProps,
-  SelectorType,
-} from "../../types";
-const ErrVpn = React.lazy(() => import("./ErrVpn"));
-const ErrOffline = React.lazy(() => import("./ErrOffline"));
+import { AuxProps, SelectorType } from "../../types";
+import lazyWithPreload from "../lazyWithPreload";
+
+const ErrVpn = lazyWithPreload(() => import("./ErrVpn"));
+const ErrOffline = lazyWithPreload(() => import("./ErrOffline"));
 
 const HandleError = ({ children }: AuxProps) => {
   const [offline, setOffline] = useState(false);
